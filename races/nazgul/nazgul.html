@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzmania - Nazgul</title>
-    <link rel="stylesheet" href="../../../css/Navbar.css">
+    <link rel="stylesheet" href="/navbar.css">
     <link rel="stylesheet" href="nazgul.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 
         <div class="race-body">
             <div class="race-image-container">
-                <img src="../../../img/races/nazgul.jpg" alt="Nazgul" class="race-image">
+                <img src="img/races/nazgul.jpg" alt="Nazgul" class="race-image">
             </div>
 
             <div class="race-info">
@@ -62,11 +62,11 @@
             </div>
         </div>
 
-        <a href="../../race.html" class="back-button">← Retour aux Races</a>
+        <a href="race.html" class="back-button">← Retour aux Races</a>
     </main>
 
     <script>
-    fetch('../../navbar.html')
+    fetch('navbar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
@@ -88,4 +88,5 @@
         });
     </script>
 </body>
+
 </html>
