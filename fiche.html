@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arzmania - Créateur de Fiche</title>
+  <link rel="stylesheet" href="css/fiche.css">
+</head>
+<body>
+
+<nav id="site-nav">
+  <a class="logo" href="index.html">✦ ARZMANIA</a>
+  <a href="contexte.html">Contexte</a>
+  <a href="race.html">Races</a>
+  <a href="classes.html">Classes</a>
+  <a href="chronologie.html">Chronologie</a>
+  <a href="personnages.html">Personnages</a>
+</nav>
+
+<div class="hero">
+  <h1>Créateur de <span>Fiche</span></h1>
+  <p>Construis ton personnage étape par étape et génère ta fiche prête à soumettre sur Discord.</p>
+  <div class="stepper" id="stepper">
+    <div class="step-dot active" id="sd1">1</div>
+    <div class="step-line" id="sl1"></div>
+    <div class="step-dot" id="sd2">2</div>
+    <div class="step-line" id="sl2"></div>
+    <div class="step-dot" id="sd3">3</div>
+    <div class="step-line" id="sl3"></div>
+    <div class="step-dot" id="sd4">4</div>
+    <div class="step-line" id="sl4"></div>
+    <div class="step-dot" id="sd5">5</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="card">
+
+    <div class="step-panel active" id="panel1">
+      <p class="step-title">Identité</p>
+      <p class="step-sub">Les informations de base de ton personnage.</p>
+      <div class="field">
+        <label>Nom du personnage</label>
+        <input type="text" id="nom" placeholder="Ex : Kael Arven" oninput="checkStep1()">
+      </div>
+      <div class="field">
+        <label>Âge</label>
+        <input type="text" id="age" placeholder="Ex : 24" oninput="checkStep1()">
+      </div>
+      <div class="field">
+        <label>Genre</label>
+        <select id="genre" onchange="checkStep1()">
+          <option value="">— Sélectionner —</option>
+          <option>Masculin</option>
+          <option>Féminin</option>
+          <option>Non-binaire</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="nav-row">
+        <span></span>
+        <button class="btn-next" id="next1" onclick="goTo(2)" disabled>Suivant →</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel2">
+      <p class="step-title">Race</p>
+      <p class="step-sub">Chaque race possède sa propre culture et histoire dans l'univers d'Arzmania.</p>
+      <div class="grid-select" id="raceGrid"></div>
+      <div class="nav-row">
+        <button class="btn-prev" onclick="goTo(1)">← Retour</button>
+        <button class="btn-next" id="next2" onclick="goTo(3)" disabled>Suivant →</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel3">
+      <p class="step-title">Classe principale</p>
+      <p class="step-sub">Une fois choisie, ta classe ne pourra pas être modifiée. Choisis avec soin !</p>
+      <div id="classeGrid"></div>
+      <div class="nav-row">
+        <button class="btn-prev" onclick="goTo(2)">← Retour</button>
+        <button class="btn-next" id="next3" onclick="buildSousclasse(); goTo(4);" disabled>Suivant →</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel4">
+      <p class="step-title">Sous-classe</p>
+      <p class="step-sub">Ta sous-classe est déterminée par ta classe principale.</p>
+      <div class="hint-box" id="sousHint"></div>
+      <div id="sousGrid"></div>
+      <div class="nav-row">
+        <button class="btn-prev" onclick="goTo(3)">← Retour</button>
+        <button class="btn-next" id="next4" onclick="goTo(5)" disabled>Suivant →</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel5">
+      <p class="step-title">Histoire & Objectif</p>
+      <p class="step-sub">Donne vie à ton personnage avec une backstory et un objectif.</p>
+      <div class="field">
+        <label>Histoire du personnage</label>
+        <textarea id="backstory" placeholder="Décris l'histoire, la personnalité et les motivations de ton personnage..." oninput="checkStep5()"></textarea>
+      </div>
+      <div class="field">
+        <label>Objectif principal sur le serveur</label>
+        <select id="objectif" onchange="checkStep5()">
+          <option value="">— Sélectionner —</option>
+          <option>Devenir une figure politique</option>
+          <option>Maîtriser la magie</option>
+          <option>Devenir un guerrier légendaire</option>
+          <option>Devenir un marchand célèbre</option>
+          <option>Explorer le monde</option>
+          <option>Rejoindre une guilde</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="nav-row">
+        <button class="btn-prev" onclick="goTo(4)">← Retour</button>
+        <button class="btn-next" id="next5" onclick="genFiche()" disabled>Générer la fiche ✦</button>
+      </div>
+    </div>
+
+    <div class="step-panel" id="panel6">
+      <p class="step-title">Fiche générée</p>
+      <p class="step-sub">Copie ce texte et colle-le dans le canal de soumission de fiches sur Discord.</p>
+      <div class="fiche-box" id="ficheOut"></div>
+      <div class="fiche-actions">
+        <button class="btn-copy" id="copyBtn" onclick="copyFiche()">📋 Copier pour Discord</button>
+        <button class="btn-restart" onclick="restart()">↺ Recommencer</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/fiche.js"></script>
+</body>
+</html>
